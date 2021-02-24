@@ -41,7 +41,7 @@ public:
 
 int main()
 {
-    std::cout << "Start hashtable test\n";
+//    std::cout << "Start hashtable test\n";
 
     HashTable hashTable;
 
@@ -50,7 +50,7 @@ int main()
     std::string word;
     while (infile >> word)
     {
-        std::cout << word << std::endl;
+//        std::cout << word << std::endl;
         hashTable.put(word);
     }
 
@@ -67,7 +67,7 @@ int main()
         }
     } while (userWord != "exit");
 
-    std::cout << "Finish\n";
+//    std::cout << "Finish\n";
 
     return 0;
 }

@@ -10,6 +10,10 @@ private:
     int calcHash(const std::string &word) {
         int res = 0;
         res = word[0] % N;
+        if(word.length()>1) {
+            res += word[1];
+            res %= N;
+        }
         return res;
     }
 

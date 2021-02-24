@@ -32,6 +32,11 @@ private:
     }
 
 public:
+    bool check(const std::string &word) {
+        int hash = calcHash(word);
+        return hasWordInBucket(hash, word);
+    }
+
     void put(const std::string &word) {
         int hash = calcHash(word);
 
@@ -40,17 +45,13 @@ public:
         }
     }
 
-    bool check(const std::string &word) {
-        int hash = calcHash(word);
-        return hasWordInBucket(hash, word);
-    }
 };
 
 int main()
 {
 //    std::cout << "Start hashtable test\n";
 
-    HashTable hashTable;
+    HashTable dictionary;
 
     std::ifstream infile("../words.txt");
 
@@ -58,7 +59,7 @@ int main()
     while (infile >> word)
     {
 //        std::cout << word << std::endl;
-        hashTable.put(word);
+        dictionary.put(word);
     }
 
     infile.close();
@@ -66,7 +67,7 @@ int main()
     std::string userWord;
     do {
         std::cin >> userWord;
-        if(hashTable.check(userWord)) {
+        if(dictionary.check(userWord)) {
             std::cout << "Correct word.\n";
         }
         else {

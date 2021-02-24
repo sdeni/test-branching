@@ -47,6 +47,7 @@ public:
 
 int main()
 {
+
     HashTable dictionary;
 
     std::ifstream infile("../words.txt");

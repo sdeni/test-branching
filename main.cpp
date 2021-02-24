@@ -7,10 +7,10 @@ private:
     static const int N = 100;
     std::list<std::string> buckets[N];
 
-    int calcHash(const std::string &word) {
+    int calcHash(const std::string &word, bool useOnlyTheFirst) {
         int res = 0;
         res = word[0] % N;
-        if(word.length()>1) {
+        if(!useOnlyTheFirst && word.length()>1) {
             res += word[1];
             res %= N;
         }
@@ -32,15 +32,15 @@ private:
 
 public:
     void put(const std::string &word) {
-        int hash = calcHash(word);
+        int hash = calcHash(word, false);
 
         if(!hasWordInBucket(hash, word)) {
             addWordToBucket(hash, word);
         }
     }
 
-    bool check(const std::string &word) {
-        int hash = calcHash(word);
+    bool check(const std::string &word, bool useOnlyTheFirst) {
+        int hash = calcHash(word, useOnlyTheFirst);
         return hasWordInBucket(hash, word);
     }
 };
@@ -65,7 +65,7 @@ int main()
     std::string userWord;
     do {
         std::cin >> userWord;
-        if(hashTable.check(userWord)) {
+        if(hashTable.check(userWord, true)) {
             std::cout << "Correct word.\n";
         }
         else {

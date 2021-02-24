@@ -7,16 +7,6 @@ private:
     static const int N = 100;
     std::list<std::string> buckets[N];
 
-    int calcHash(const std::string &word) {
-        int res = 0;
-        res = word[0] % N;
-        if(word.length()>1) {
-            res += word[1];
-            res %= N;
-        }
-        return res;
-    }
-
     bool hasWordInBucket(int index, const std::string &word) {
         for(auto w : buckets[index]) {
             if(w == word) {
@@ -25,6 +15,17 @@ private:
         }
         return false;
     }
+
+    int calcHash(const std::string &word, int test = 0) {
+        int res = 0;
+        res = word[0] % N;
+        if(word.length()>1) {
+            res += word[1]+test;
+            res %= N;
+        }
+        return res;
+    }
+
 
     void addWordToBucket(int index, const std::string &word) {
         buckets[index].push_back(word);

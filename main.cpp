@@ -8,7 +8,10 @@ private:
     std::list<std::string> buckets[N];
 
     int calcHash(const std::string &word) {
-        return word[0] % N;
+        int res = 0;
+        res = word[0] % N;
+        .....
+        return res;
     }
 
     bool hasWordInBucket(int index, const std::string &word) {

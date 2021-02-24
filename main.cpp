@@ -41,7 +41,7 @@ public:
 
 int main()
 {
-    std::cout << "Start\n";
+    std::cout << "Start hashtable test\n";
 
     HashTable hashTable;
 

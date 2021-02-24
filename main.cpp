@@ -49,8 +49,6 @@ public:
 
 int main()
 {
-//    std::cout << "Start hashtable test\n";
-
     HashTable dictionary;
 
     std::ifstream infile("../words.txt");
@@ -58,7 +56,6 @@ int main()
     std::string word;
     while (infile >> word)
     {
-//        std::cout << word << std::endl;
         dictionary.put(word);
     }
 
@@ -74,8 +71,6 @@ int main()
             std::cout << "Wrong word!\n";
         }
     } while (userWord != "exit");
-
-//    std::cout << "Finish\n";
 
     return 0;
 }

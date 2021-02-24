@@ -7,11 +7,11 @@ private:
     static const int N = 100;
     std::list<std::string> buckets[N];
 
-    int calcHash(const std::string &word, bool useOnlyTheFirst) {
+    int calcHash(const std::string &word, bool useOnlyTheFirst, int test = 0) {
         int res = 0;
         res = word[0] % N;
         if(!useOnlyTheFirst && word.length()>1) {
-            res += word[1];
+            res += word[1]+test;
             res %= N;
         }
         return res;
@@ -31,6 +31,11 @@ private:
     }
 
 public:
+    bool check(const std::string &word, bool useOnlyTheFirst) {
+        int hash = calcHash(word, useOnlyTheFirst);
+        return hasWordInBucket(hash, word);
+    }
+
     void put(const std::string &word) {
         int hash = calcHash(word, false);
 
@@ -38,26 +43,18 @@ public:
             addWordToBucket(hash, word);
         }
     }
-
-    bool check(const std::string &word, bool useOnlyTheFirst) {
-        int hash = calcHash(word, useOnlyTheFirst);
-        return hasWordInBucket(hash, word);
-    }
 };
 
 int main()
 {
-//    std::cout << "Start hashtable test\n";
-
-    HashTable hashTable;
+    HashTable dictionary;
 
     std::ifstream infile("../words.txt");
 
     std::string word;
     while (infile >> word)
     {
-//        std::cout << word << std::endl;
-        hashTable.put(word);
+        dictionary.put(word);
     }
 
     infile.close();
@@ -65,15 +62,13 @@ int main()
     std::string userWord;
     do {
         std::cin >> userWord;
-        if(hashTable.check(userWord, true)) {
+        if(dictionary.check(userWord, true)) {
             std::cout << "Correct word.\n";
         }
         else {
             std::cout << "Wrong word!\n";
         }
     } while (userWord != "exit");
-
-//    std::cout << "Finish\n";
 
     return 0;
 }
